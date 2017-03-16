@@ -1,2 +1,6 @@
-# bs_NKRA
-Basic Security Project
+# Basic Security Project
+## Team: 
+- Niels Debrier
+- Kevin Dominguez
+- Ruben Lassau-Strauven (Fag)
+- Arne Motmans
