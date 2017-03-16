@@ -16,7 +16,7 @@
 
 # System & Networks :
 *   Ieder test één van volgende OS's?
-    *   Windows XP
+    *   Windows XP => Ruben Lassau-Strauven
     *   Windows Vista => Kevin Dominguez
     *   Windows 7
     *   Metasploitable OS
