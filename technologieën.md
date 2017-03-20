@@ -7,6 +7,7 @@
 
     *Zie Onsophic voor Code Demonstrations van de encryptiemethodes.*
 *   Hashing methode: [MD5?](https://msdn.microsoft.com/en-us/library/system.security.cryptography.md5cryptoserviceprovider(v=vs.110).aspx)
+    * [Hash Cracker](https://hashkiller.co.uk/md5-decrypter.aspx)
 *   Steganografie:
     * [Voorbeeld 1](https://www.codeproject.com/Tips/635715/Steganography-Simple-Implementation-in-Csharp)
     * [Voorbeeld 2](https://www.youtube.com/watch?v=97Vz6wyHeeM)
