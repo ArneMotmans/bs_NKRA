@@ -1,0 +1,29 @@
+﻿<Window x:Class="MD5Hashing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MD5Hashing"
+        mc:Ignorable="d"
+        Title="MD5 Hasher" Height="255.848" Width="525">
+    <Grid>
+        <GroupBox x:Name="inputGroupBox" Header="Input" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="126" Width="497">
+            <Grid HorizontalAlignment="Left" Height="108" VerticalAlignment="Top" Width="487" Margin="0,0,-2,0">
+                <Label x:Name="textLabel" Content="Text:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="70"/>
+                <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Height="26" Margin="85,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312"/>
+                <Label x:Name="saltLabel" Content="Salt:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="70"/>
+                <TextBox x:Name="saltTextBox" HorizontalAlignment="Left" Height="26" Margin="85,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312"/>
+                <Button x:Name="generateSaltButton" Content="Generate" HorizontalAlignment="Left" Margin="402,41,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="generateSaltButton_Click"/>
+                <Button x:Name="hashButton" Content="Hash" HorizontalAlignment="Left" Margin="402,72,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="hashButton_Click"/>
+                <CheckBox x:Name="disableSaltCheckBox" Content="Disable Salting" HorizontalAlignment="Left" Margin="85,72,0,0" VerticalAlignment="Top" Checked="disableSaltCheckBox_Checked" Unchecked="disableSaltCheckBox_Unchecked"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="outputGroupBox" Header="Output" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Height="76" Width="497">
+            <Grid HorizontalAlignment="Left" Height="58" VerticalAlignment="Top" Width="487" Margin="0,0,-2,0">
+                <Label x:Name="hashLabel" Content="Hash:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="70"/>
+                <TextBox x:Name="hashTextBox" HorizontalAlignment="Left" Height="26" Margin="85,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
