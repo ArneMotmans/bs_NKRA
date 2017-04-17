@@ -12,3 +12,17 @@ C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\MD
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.csproj.GenerateResource.Cache
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.exe
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.pdb
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\bin\Debug\MD5Hashing.exe.config
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.exe
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.pdb
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\bin\Debug\MD5Hashing.exe
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\bin\Debug\MD5Hashing.pdb
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.csprojResolveAssemblyReference.cache
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MainWindow.g.cs
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\App.g.cs
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing_MarkupCompile.cache
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing_MarkupCompile.lref
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MainWindow.baml
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.g.resources
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.Properties.Resources.resources
+C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\MD5Hashing\MD5Hashing\obj\Debug\MD5Hashing.csproj.GenerateResource.Cache
