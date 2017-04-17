@@ -23,66 +23,25 @@ namespace RsaCryptoExample2
     public partial class MainWindow : Window
     {
 
-        UnicodeEncoding ByteConverter = new UnicodeEncoding();
-        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-        byte[] plaintext;
-        byte[] encryptedtext;
+        RSAHelper RSAhelper = new RSAHelper();
+        private UnicodeEncoding ByteConverter = new UnicodeEncoding();
+        private byte[] encryptedtext;
 
         public MainWindow()
         {
             InitializeComponent();
-
-        }
-
-        public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
-        {
-            try
-            {
-                byte[] encryptedData;
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
-                    RSA.ImportParameters(RSAKey); encryptedData = RSA.Encrypt(Data, DoOAEPPadding);
-                }
-                return encryptedData;
-            }
-            catch (CryptographicException e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
-        }
-
-        public byte[] Decryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
-        {
-            try
-            {
-                byte[] decryptedData;
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
-                    RSA.ImportParameters(RSAKey);
-                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding);
-                }
-                return decryptedData;
-            }
-            catch (CryptographicException e)
-            {
-                Console.WriteLine(e.ToString());
-                return null;
-            }
         }
 
         private void buttonEncrypt_Click(object sender, RoutedEventArgs e)
         {
-
-            plaintext = ByteConverter.GetBytes(textBoxTekst.Text);
-            encryptedtext = Encryption(plaintext, RSA.ExportParameters(false), false);
+            byte [] plaintext = ByteConverter.GetBytes(textBoxTekst.Text);
+            encryptedtext = RSAhelper.Encryption(plaintext, RSAhelper.PublicKey, false);
             textBoxEncrypted.Text = ByteConverter.GetString(encryptedtext);
-        
-     }
+        }
 
         private void buttonDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            byte[] decryptedtex = Decryption(encryptedtext, RSA.ExportParameters(true), false);
+            byte[] decryptedtex = RSAhelper.Decryption(encryptedtext, RSAhelper.PrivateKey, false);
             textBoxDecrypted.Text = ByteConverter.GetString(decryptedtex);
         }
     }
