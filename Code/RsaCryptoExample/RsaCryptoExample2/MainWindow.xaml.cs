@@ -23,10 +23,16 @@ namespace RsaCryptoExample2
     public partial class MainWindow : Window
     {
 
+
         UnicodeEncoding ByteConverter = new UnicodeEncoding();
         RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();  // dit is uw RSA --> RSA.exportparameters(false) = public key --> visa versa voor private key
         byte[] plaintext;
         byte[] encryptedtext;
+
+        RSAHelper RSAhelper = new RSAHelper();
+        //private UnicodeEncoding ByteConverter = new UnicodeEncoding();
+        //private byte[] encryptedtext;
+
 
         public MainWindow()
         {
@@ -74,16 +80,14 @@ namespace RsaCryptoExample2
 
         private void buttonEncrypt_Click(object sender, RoutedEventArgs e)
         {
-
-            plaintext = ByteConverter.GetBytes(textBoxTekst.Text);
-            encryptedtext = Encryption(plaintext, RSA.ExportParameters(false), false);
+            byte [] plaintext = ByteConverter.GetBytes(textBoxTekst.Text);
+            encryptedtext = RSAhelper.Encryption(plaintext, RSAhelper.PublicKey, false);
             textBoxEncrypted.Text = ByteConverter.GetString(encryptedtext);
-        
-     }
+        }
 
         private void buttonDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            byte[] decryptedtex = Decryption(encryptedtext, RSA.ExportParameters(true), false);
+            byte[] decryptedtex = RSAhelper.Decryption(encryptedtext, RSAhelper.PrivateKey, false);
             textBoxDecrypted.Text = ByteConverter.GetString(decryptedtex);
         }
     }

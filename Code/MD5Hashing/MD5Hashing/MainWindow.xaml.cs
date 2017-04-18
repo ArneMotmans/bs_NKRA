@@ -21,7 +21,7 @@ namespace MD5Hashing
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string Salt { get; set; }
+        MD5Helper md5helper = new MD5Helper();
 
         public MainWindow()
         {
@@ -30,40 +30,19 @@ namespace MD5Hashing
 
         private void hashButton_Click(object sender, RoutedEventArgs e)
         {
-            hashTextBox.Text = GenerateHash(inputTextBox.Text, Salt);
+            hashTextBox.Text = md5helper.GenerateHash(inputTextBox.Text, saltTextBox.Text);
         }
 
         private void generateSaltButton_Click(object sender, RoutedEventArgs e)
         {
-            saltTextBox.Text = GenerateSalt(32);
-        }
-
-        private string GenerateHash(string text, string salt = "")
-        {
-            MD5 md5Hasher = new MD5CryptoServiceProvider();
-            byte[] hashedTextBytes = md5Hasher.ComputeHash(Encoding.Unicode.GetBytes(salt+text));
-            return ByteArrayToString(hashedTextBytes);
-        }
-
-        private string GenerateSalt(int size)
-        {
-            RNGCryptoServiceProvider salter = new RNGCryptoServiceProvider();   //Genereert random bytes
-            byte[] saltBytes = new byte[size];
-            salter.GetBytes(saltBytes);
-            Salt = ByteArrayToString(saltBytes);
-            return Salt;
-        }
-
-        private string ByteArrayToString(byte[] array)
-        {
-            return BitConverter.ToString(array).Replace("-", String.Empty).ToLower();
+            saltTextBox.Text = md5helper.GenerateSalt(32);
         }
 
         private void disableSaltCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             generateSaltButton.IsEnabled = false;
             saltTextBox.Text = String.Empty;
-            Salt = "";
+           // Salt = "";
             saltTextBox.IsEnabled = false;
         }
 
