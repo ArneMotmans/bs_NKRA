@@ -24,7 +24,7 @@ namespace RsaCryptoExample2
     {
 
         UnicodeEncoding ByteConverter = new UnicodeEncoding();
-        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();  // dit is uw RSA --> RSA.exportparameters(false) = public key --> visa versa voor private key
         byte[] plaintext;
         byte[] encryptedtext;
 
@@ -38,12 +38,13 @@ namespace RsaCryptoExample2
         {
             try
             {
-                byte[] encryptedData;
+                byte[] encryptedData; 
                 using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
                 {
-                    RSA.ImportParameters(RSAKey); encryptedData = RSA.Encrypt(Data, DoOAEPPadding);
+                    RSA.ImportParameters(RSAKey); //RSA sleutel die meegegeven wordt importeren in de nieuwe RSA variable IN DIT GEVAL DE PUBLIC KEY VAN DE ONTVANGER
+                    encryptedData = RSA.Encrypt(Data, DoOAEPPadding); //doOAEPPading (geen idee maar is altijd false) - Data is het gene wat je wilt encrypteren
                 }
-                return encryptedData;
+                return encryptedData; //geef de encrypteerde data terug in bytes
             }
             catch (CryptographicException e)
             {
@@ -56,11 +57,11 @@ namespace RsaCryptoExample2
         {
             try
             {
-                byte[] decryptedData;
+                byte[] decryptedData; 
                 using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
                 {
-                    RSA.ImportParameters(RSAKey);
-                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding);
+                    RSA.ImportParameters(RSAKey); //import de rsa key uit de parameter
+                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding); // import  
                 }
                 return decryptedData;
             }

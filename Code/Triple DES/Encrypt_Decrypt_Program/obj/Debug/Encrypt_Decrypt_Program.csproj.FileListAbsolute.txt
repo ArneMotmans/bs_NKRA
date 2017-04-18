@@ -12,3 +12,17 @@ C:\Users\11502064\Desktop\School\2TINJ\Semester 2\Basic security\Project\C#\Encr
 C:\Users\11502064\Desktop\School\2TINJ\Semester 2\Basic security\Project\C#\Encrypt_Decrypt_Program\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.csproj.GenerateResource.Cache
 C:\Users\11502064\Desktop\School\2TINJ\Semester 2\Basic security\Project\C#\Encrypt_Decrypt_Program\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.exe
 C:\Users\11502064\Desktop\School\2TINJ\Semester 2\Basic security\Project\C#\Encrypt_Decrypt_Program\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.pdb
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\bin\Debug\Encrypt_Decrypt_Program.exe.config
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.exe
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.pdb
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\bin\Debug\Encrypt_Decrypt_Program.exe
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\bin\Debug\Encrypt_Decrypt_Program.pdb
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.csprojResolveAssemblyReference.cache
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\MainWindow.g.cs
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\App.g.cs
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program_MarkupCompile.cache
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program_MarkupCompile.lref
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\MainWindow.baml
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.g.resources
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.Properties.Resources.resources
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\Encrypt_Decrypt_Program.csproj.GenerateResource.Cache
