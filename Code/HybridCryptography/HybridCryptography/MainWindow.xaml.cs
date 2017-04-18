@@ -27,13 +27,24 @@ namespace HybridCryptography
 
             HybridCryptograpyHelper hybrid = new HybridCryptograpyHelper();
             TripleDESHelper tdes = new TripleDESHelper();
-            /*string text = System.Text.UTF8Encoding.Default.GetString(tdes.Encrypt("Hallo wereld"));
-            string key = System.Text.UTF8Encoding.Default.GetString(tdes.GetKey());*/
-            string text = tdes.Encrypt("hallo wereld").ToString();
-            string key = tdes.GetKey().ToString();
-            MessageBox.Show(text);
-            MessageBox.Show(tdes.Decrypt(text, key));
-            //MessageBox.Show(hybrid.Decrypt(hybrid.Encrypt("Hallo aan mijn Team")));
+
+            
+            //MessageBox.Show(hybrid.Decrypt(hybrid.Encrypt("Hallo Wereld!")));
+
+            
+            string geheimeText = tdes.Decrypt(String.Join(".", tdes.Encrypt("Hallo Wereld!")), String.Join(".", tdes.GetKey()));
+            MessageBox.Show(geheimeText);
+
+            /*//encrypt
+            Dictionary<string, byte[]> encryptResult = TripleDESHelper.Encrypt("Hallo Wereld!");
+            string encryptedText = UTF8Encoding.UTF8.GetString(encryptResult["text"]);
+            string key = String.Join(".", encryptResult["key"]);
+            string geheimeText = encryptedText;
+            string geheimeTextBytes = String.Join(".", encryptResult["text"]);
+
+            //decrypt
+            string decryptedText = TripleDESHelper.Decrypt(geheimeTextBytes, key);
+            MessageBox.Show(decryptedText);*/
         }
     }
 }
