@@ -29,11 +29,11 @@ namespace HybridCryptography
             TripleDESHelper tdes = new TripleDESHelper();
 
             
-            //MessageBox.Show(hybrid.Decrypt(hybrid.Encrypt("Hallo Wereld!")));
+            MessageBox.Show(hybrid.Decrypt(hybrid.Encrypt("Hallo Wereld!")));
 
-            
-            string geheimeText = tdes.Decrypt(String.Join(".", tdes.Encrypt("Hallo Wereld!")), String.Join(".", tdes.GetKey()));
-            MessageBox.Show(geheimeText);
+            /*Dictionary<string, byte[]> encryptie = TripleDESHelper.Encrypt("Hallo Wereld!");
+            string geheimeText = TripleDESHelper.Decrypt(String.Join(".", encryptie["text"]), String.Join(".", encryptie["key"]));
+            MessageBox.Show(geheimeText);*/
 
             /*//encrypt
             Dictionary<string, byte[]> encryptResult = TripleDESHelper.Encrypt("Hallo Wereld!");

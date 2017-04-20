@@ -16,6 +16,7 @@ namespace Encrypt_Decrypt_Program
             tdes = new TripleDESCryptoServiceProvider();
         }
 
+        /*
         public byte[] Encrypt(string toEncrypt)
         {
             byte[] keyArray;
@@ -44,9 +45,9 @@ namespace Encrypt_Decrypt_Program
             //Return the encrypted data in byte array
             return resultArray;
 
-        }
+        }*/
 
-        /*public static Dictionary<string, byte[]> Encrypt(string toEncrypt)
+        public static Dictionary<string, byte[]> Encrypt(string toEncrypt)
         {
             Dictionary<string, byte[]> output = new Dictionary<string, byte[]>();
             byte[] keyArray;
@@ -122,8 +123,8 @@ namespace Encrypt_Decrypt_Program
             tdes.Clear();
             //return the Clear decrypted TEXT
             return UTF8Encoding.UTF8.GetString(resultArray);
-        }*/
-
+        }
+        /*
         public string Decrypt(string cipherString, string key)
         {
 
@@ -162,7 +163,7 @@ namespace Encrypt_Decrypt_Program
             tdes.Clear();
             //return the Clear decrypted TEXT
             return UTF8Encoding.UTF8.GetString(resultArray);
-        }
+        }*/
 
         public byte[] GetKey()
         {
