@@ -111,8 +111,6 @@ namespace RsaCryptoExample2
             bool success = false;
             using (var rsa = new RSACryptoServiceProvider())
             {
-                //Don't do this, do the same as you did in SignData:
-                //byte[] bytesToVerify = Convert.FromBase64String(originalMessage);
                 var encoder = new UTF8Encoding();
                 byte[] bytesToVerify = encoder.GetBytes(originalMessage);
 

@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HybridCryptography"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="360.642" Width="679.532">
     <Grid>
-        
+        <Border Background="#FFE8E8E8" Margin="10,10,401,59">
+            <Image x:Name="image" HorizontalAlignment="Left" Height="261" VerticalAlignment="Top" Width="261"/>
+        </Border>
+
+        <Button x:Name="selectImageButton" Content="Select Image" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Width="100" Click="selectImageButton_Click" Height="24"/>
+        <GroupBox x:Name="encodeGroupBox" Header="Encode" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" Height="177" Width="386">
+            <Grid>
+                <Label x:Name="textLabel" Content="Text:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="60"/>
+                <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Height="110" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
+                <Button x:Name="encodeButton" Content="Encode" HorizontalAlignment="Left" Margin="289,125,0,0" VerticalAlignment="Top" Width="75" Click="encodeButton_Click"/>
+                <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="209,125,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click" />
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="decodeGroupBox" Header="Decode" HorizontalAlignment="Left" Margin="276,192,0,0" VerticalAlignment="Top" Height="108" Width="386">
+            <Grid>
+                <Label x:Name="textLabel1" Content="Text:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="60"/>
+                <TextBox x:Name="outputTextBox" HorizontalAlignment="Left" Height="41" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
+                <Button x:Name="decodeButton" Content="Decode" HorizontalAlignment="Left" Margin="289,56,0,0" VerticalAlignment="Top" Width="75" Click="decodeButton_Click"/>
+            </Grid>
+        </GroupBox>
+        <TextBox x:Name="pathTextBox" HorizontalAlignment="Left" Height="23" Margin="115,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+
     </Grid>
 </Window>
