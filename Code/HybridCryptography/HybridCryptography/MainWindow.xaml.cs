@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Encrypt_Decrypt_Program;
+using RsaCryptoExample2;
 
 namespace HybridCryptography
 {
@@ -31,20 +32,6 @@ namespace HybridCryptography
             
             MessageBox.Show(hybrid.Decrypt(hybrid.Encrypt("Hallo Wereld!")));
 
-            /*Dictionary<string, byte[]> encryptie = TripleDESHelper.Encrypt("Hallo Wereld!");
-            string geheimeText = TripleDESHelper.Decrypt(String.Join(".", encryptie["text"]), String.Join(".", encryptie["key"]));
-            MessageBox.Show(geheimeText);*/
-
-            /*//encrypt
-            Dictionary<string, byte[]> encryptResult = TripleDESHelper.Encrypt("Hallo Wereld!");
-            string encryptedText = UTF8Encoding.UTF8.GetString(encryptResult["text"]);
-            string key = String.Join(".", encryptResult["key"]);
-            string geheimeText = encryptedText;
-            string geheimeTextBytes = String.Join(".", encryptResult["text"]);
-
-            //decrypt
-            string decryptedText = TripleDESHelper.Decrypt(geheimeTextBytes, key);
-            MessageBox.Show(decryptedText);*/
         }
     }
 }
