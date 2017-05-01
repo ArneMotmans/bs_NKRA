@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Encrypt_Decrypt_Program;
 using MD5Hashing;
 using RsaCryptoExample2;
@@ -13,46 +15,74 @@ namespace HybridCryptography
     {
         private MD5Helper md5helper = new MD5Helper();
         private TripleDESHelper tripleDesHelper = new TripleDESHelper();
-        private RSAHelper RsaHelperA = new RSAHelper();
-        private RSAHelper RsaHelperB = new RSAHelper();
+        private RSAHelper RsaHelper = new RSAHelper();
+        public RSAParameters PublicKey { get; }
 
-        public Dictionary<string, byte[]> Encrypt(string text)
+        public HybridCryptograpyHelper()
         {
-            /*//encrypt
-            Dictionary<string, byte[]> encryptResult = TripleDESHelper.Encrypt("Hallo Wereld!");
-            string encryptedText = UTF8Encoding.UTF8.GetString(encryptResult["text"]);
-            string key = String.Join(".", encryptResult["key"]);
-            string geheimeText = encryptedText;
-            string geheimeTextBytes = String.Join(".", encryptResult["text"]);
+            PublicKey = RsaHelper.PublicKey;
+        }
 
-            //decrypt
-            string decryptedText = TripleDESHelper.Decrypt(geheimeTextBytes, key);
-            MessageBox.Show(decryptedText);*/
-
+        public Dictionary<string, byte[]> Encrypt(byte[] bytesToEncrypt, RSAParameters publicKeyReceiver)
+        {
             Dictionary<string,byte[]> output = new Dictionary<string, byte[]>();
-            Dictionary<string, byte[]> tdes = TripleDESHelper.Encrypt(text);
+            Dictionary<string, byte[]> tdes = TripleDESHelper.Encrypt(bytesToEncrypt);
             output.Add("text",tdes["text"]); //file 1: het origineel geencrypteerd met triple DES. Het gene wat geencrypteerd wordt is text (uit de parameter van deze functie)
-            output.Add("key",RsaHelperB.Encryption(tdes["key"],RsaHelperB.PublicKey,false)); //File 2: triple des sleutel encrypteren met de public van B
-            output.Add("hash", RsaHelperA.SignData(md5helper.GenerateHash(text) , RsaHelperA.PrivateKey)); // file 3: maak een hash en encrypteer die met de privé sleutel van A
+            output.Add("key",RsaHelper.Encryption(tdes["key"], publicKeyReceiver, false)); //File 2: triple des sleutel encrypteren met de public van andere persoon
+            output.Add("hash", RsaHelper.SignData(md5helper.GenerateHash(bytesToEncrypt) , RsaHelper.PrivateKey)); // file 3: maak een hash en encrypteer die met eigen privé sleutel
             return output;
         }
 
-        public string Decrypt(Dictionary<string, byte[]> input)
+        public Dictionary<string, byte[]> Decrypt(Dictionary<string, byte[]> data, RSAParameters publicKeySender)
         {
-            byte[] tripleDesKey = RsaHelperB.Decryption(input["key"], RsaHelperB.PrivateKey, false); //file 2: decrypteren met de prive van B --> geeft tripledes sleutel
-            string geheimeText = TripleDESHelper.Decrypt(String.Join(".", input["text"]), String.Join(".", tripleDesKey)); //file 1: decrypteren met de zo juist verkregen tripledes sleutel
-            bool hashGood = RsaHelperA.VerifyData(md5helper.GenerateHash(geheimeText), input["hash"], RsaHelperA.PublicKey);
-            string outputText;
-            if (hashGood)
+            Dictionary<string, byte[]> output = new Dictionary<string, byte[]>();
+            try
             {
-                outputText = "De hash is in orde \n\n" + geheimeText;
+                output.Add("key", RsaHelper.Decryption(data["key"], RsaHelper.PrivateKey, false));
+                //file 2: decrypteren met eigen prive -> geeft tripledes sleutel
+                output.Add("text", TripleDESHelper.Decrypt(data["text"], output["key"]));
+                //file 1: decrypteren met de zo juist verkregen tripledes sleutel
+                byte[] hashComparison = new byte[]
+                {
+                    Convert.ToByte(RsaHelper.VerifyData(md5helper.GenerateHash(output["text"]), data["hash"],
+                        publicKeySender))
+                }; //decrypteer meegestuurde hash met public key van zender en vergelijk
+                output.Add("hash", hashComparison);
+                return output;
             }
-            else
+            catch (NullReferenceException ex)
             {
-                outputText = "De hash is NIET IN ORDE! \n\n" + geheimeText;
+                throw new NullReferenceException(ex.Message);
             }
+        }
 
-            return outputText;
+        public RSAParameters ConvertStringToKey(string keyString)
+        {
+            //get a stream from the string
+            var sr = new System.IO.StringReader(keyString);
+            //we need a deserializer
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            //get the object back from the stream
+            try
+            {
+                return (RSAParameters) xs.Deserialize(sr);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+        }
+
+        public string ConvertKeyToString(RSAParameters key)
+        {
+            //we need some buffer
+            var sw = new System.IO.StringWriter();
+            //we need a serializer
+            var xs = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            //serialize the key into the stream
+            xs.Serialize(sw, key);
+            //get the string from the stream
+            return sw.ToString();
         }
 
         private byte[] StringToByteArray(string text)

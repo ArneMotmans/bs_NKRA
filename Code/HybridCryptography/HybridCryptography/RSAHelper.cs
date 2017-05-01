@@ -19,8 +19,8 @@ namespace RsaCryptoExample2
 
         public RSAParameters PublicKey
         {
+           
             get { return RSA.ExportParameters(false); }
-            set { publicKey = value; }
         }
 
         private RSAParameters privateKey;
@@ -28,7 +28,6 @@ namespace RsaCryptoExample2
         public RSAParameters PrivateKey
         {
             get { return RSA.ExportParameters(true); }
-            set { privateKey = value; }
         }
 
         public RSAHelper()
