@@ -12,3 +12,17 @@ C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\Pi
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.csproj.GenerateResource.Cache
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.exe
 C:\Users\11501537\Desktop\School\2e Jaar\Semester 2\Basic Security\Groepswerk\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.pdb
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\bin\Debug\PictureSteganography.exe.config
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\bin\Debug\PictureSteganography.exe
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\bin\Debug\PictureSteganography.pdb
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.csprojResolveAssemblyReference.cache
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\MainWindow.g.cs
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\App.g.cs
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography_MarkupCompile.cache
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography_MarkupCompile.lref
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\MainWindow.baml
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.g.resources
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.Properties.Resources.resources
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.csproj.GenerateResource.Cache
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.exe
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\PictureSteganography\PictureSteganography\obj\Debug\PictureSteganography.pdb

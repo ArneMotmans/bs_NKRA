@@ -23,13 +23,59 @@ namespace RsaCryptoExample2
     public partial class MainWindow : Window
     {
 
+
+        UnicodeEncoding ByteConverter = new UnicodeEncoding();
+        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();  // dit is uw RSA --> RSA.exportparameters(false) = public key --> visa versa voor private key
+        byte[] plaintext;
+        byte[] encryptedtext;
+
         RSAHelper RSAhelper = new RSAHelper();
-        private UnicodeEncoding ByteConverter = new UnicodeEncoding();
-        private byte[] encryptedtext;
+        //private UnicodeEncoding ByteConverter = new UnicodeEncoding();
+        //private byte[] encryptedtext;
+
 
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        public byte[] Encryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] encryptedData; 
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey); //RSA sleutel die meegegeven wordt importeren in de nieuwe RSA variable IN DIT GEVAL DE PUBLIC KEY VAN DE ONTVANGER
+                    encryptedData = RSA.Encrypt(Data, DoOAEPPadding); //doOAEPPading (geen idee maar is altijd false) - Data is het gene wat je wilt encrypteren
+                }
+                return encryptedData; //geef de encrypteerde data terug in bytes
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public byte[] Decryption(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] decryptedData; 
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey); //import de rsa key uit de parameter
+                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding); // import  
+                }
+                return decryptedData;
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
         }
 
         private void buttonEncrypt_Click(object sender, RoutedEventArgs e)

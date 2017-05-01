@@ -4,12 +4,20 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\
+=======
 C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\obj\Debug\
+>>>>>>> d5dd157b527fafea11a55c2882c703347300e122
 Encrypt_Decrypt_Program
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
+C:\Users\Niels\Documents\5. Basic Security\project\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\App.xaml
+=======
 C:\Users\11501537\Documents\GitHub\bs_NKRA\Code\Triple DES\Encrypt_Decrypt_Program\App.xaml
+>>>>>>> d5dd157b527fafea11a55c2882c703347300e122
 11151548125
 
 5-2017746502

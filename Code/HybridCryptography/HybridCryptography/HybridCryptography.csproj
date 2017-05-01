@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="HybridCryptograpyHelper.cs" />
     <Compile Include="MD5Helper.cs" />
+    <Compile Include="PictureSteganography.cs" />
     <Compile Include="RSAHelper.cs" />
     <Compile Include="TripleDESHelper.cs" />
     <Page Include="MainWindow.xaml">

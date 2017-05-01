@@ -109,5 +109,7 @@ namespace Encrypt_Decrypt_Program
             string decryptedText = Decrypt(EncryptBox.Text);
             DecryptBox.Text = decryptedText;
         }
+
+        //private void EncryptTdesSleutel()
     }
 }

@@ -11,17 +11,48 @@ namespace HybridCryptography
 {
     public class HybridCryptograpyHelper
     {
-        MD5Helper md5helper = new MD5Helper();
-        TripleDESHelper tripleDesHelper = new TripleDESHelper();
-        RSAHelper RsaHelper = new RSAHelper();
+        private MD5Helper md5helper = new MD5Helper();
+        private TripleDESHelper tripleDesHelper = new TripleDESHelper();
+        private RSAHelper RsaHelperA = new RSAHelper();
+        private RSAHelper RsaHelperB = new RSAHelper();
 
         public Dictionary<string, byte[]> Encrypt(string text)
         {
+            /*//encrypt
+            Dictionary<string, byte[]> encryptResult = TripleDESHelper.Encrypt("Hallo Wereld!");
+            string encryptedText = UTF8Encoding.UTF8.GetString(encryptResult["text"]);
+            string key = String.Join(".", encryptResult["key"]);
+            string geheimeText = encryptedText;
+            string geheimeTextBytes = String.Join(".", encryptResult["text"]);
+
+            //decrypt
+            string decryptedText = TripleDESHelper.Decrypt(geheimeTextBytes, key);
+            MessageBox.Show(decryptedText);*/
+
             Dictionary<string,byte[]> output = new Dictionary<string, byte[]>();
-            output.Add("hash",StringToByteArray(md5helper.GenerateHash(text)));
-            output.Add("text",tripleDesHelper.Encrypt(text));
-            output.Add("key",RsaHelper.Encryption(tripleDesHelper.GetKey(),RsaHelper.PublicKey,false));
+            Dictionary<string, byte[]> tdes = TripleDESHelper.Encrypt(text);
+            output.Add("text",tdes["text"]); //file 1: het origineel geencrypteerd met triple DES. Het gene wat geencrypteerd wordt is text (uit de parameter van deze functie)
+            output.Add("key",RsaHelperB.Encryption(tdes["key"],RsaHelperB.PublicKey,false)); //File 2: triple des sleutel encrypteren met de public van B
+            output.Add("hash", RsaHelperA.SignData(md5helper.GenerateHash(text) , RsaHelperA.PrivateKey)); // file 3: maak een hash en encrypteer die met de privé sleutel van A
             return output;
+        }
+
+        public string Decrypt(Dictionary<string, byte[]> input)
+        {
+            byte[] tripleDesKey = RsaHelperB.Decryption(input["key"], RsaHelperB.PrivateKey, false); //file 2: decrypteren met de prive van B --> geeft tripledes sleutel
+            string geheimeText = TripleDESHelper.Decrypt(String.Join(".", input["text"]), String.Join(".", tripleDesKey)); //file 1: decrypteren met de zo juist verkregen tripledes sleutel
+            bool hashGood = RsaHelperA.VerifyData(md5helper.GenerateHash(geheimeText), input["hash"], RsaHelperA.PublicKey);
+            string outputText;
+            if (hashGood)
+            {
+                outputText = "De hash is in orde \n\n" + geheimeText;
+            }
+            else
+            {
+                outputText = "De hash is NIET IN ORDE! \n\n" + geheimeText;
+            }
+
+            return outputText;
         }
 
         private byte[] StringToByteArray(string text)
