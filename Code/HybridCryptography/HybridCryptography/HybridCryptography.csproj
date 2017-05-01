@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EncryptedDataHelper.cs" />
     <Compile Include="HybridCryptograpyHelper.cs" />
     <Compile Include="MD5Helper.cs" />
     <Compile Include="PictureSteganography.cs" />

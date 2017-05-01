@@ -11,10 +11,21 @@ namespace MD5Hashing
     {
         public string Salt { get; set; }
 
-        public string GenerateHash(string text, string salt = "")
+        public string GenerateHash(byte[] bytesToHash, string salt = "")
         {
             MD5 md5Hasher = new MD5CryptoServiceProvider();
-            byte[] hashedTextBytes = md5Hasher.ComputeHash(Encoding.Unicode.GetBytes(salt + text));
+               
+            byte[] saltBytes = Encoding.Unicode.GetBytes(salt);
+            List<Byte> bytesPlusSalt = new List<byte>();
+            foreach (var byteToHash in bytesToHash)
+            {
+                bytesPlusSalt.Add(byteToHash);
+            }
+            foreach (var saltByte in saltBytes)
+            {
+                bytesPlusSalt.Add(saltByte);
+            }
+            byte[] hashedTextBytes = md5Hasher.ComputeHash(bytesPlusSalt.ToArray());
             return ByteArrayToString(hashedTextBytes);
         }
 
