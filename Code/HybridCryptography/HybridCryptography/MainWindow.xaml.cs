@@ -30,9 +30,12 @@ namespace HybridCryptography
     {
         private Uri imageUri;
         private Bitmap img;
-        private int textLength;
-        private string filePath;
-        private byte[] fileContents;
+        private string encryptionFilePath;
+        private byte[] encryptionFileContents;
+        private string fileToEncodePath;
+        private string fileToEncodeContents;
+        private string fileToDecodePath;
+        private string fileToDecodeContents;
         private string key;
         private Dictionary<string, byte[]> encryptedFileContents;
         private HybridCryptograpyHelper hybrid;
@@ -60,7 +63,20 @@ namespace HybridCryptography
 
         private void encodeButton_Click(object sender, RoutedEventArgs e)
         {
-            img = new PictureSteganographyHelper().embedText(inputTextBox.Text, img);
+            try
+            {
+                fileToEncodeContents = File.ReadAllText(fileToEncodePath);
+                img = new PictureSteganographyHelper().embedText(fileToEncodeContents, img);
+                SetEncodingStatusMessage("Success", Brushes.Green);
+            }
+            catch (ArgumentNullException ex)
+            {
+                SetEncodingStatusMessage("Failed: No file selected", Brushes.Red);
+            }
+            catch (NullReferenceException ex)
+            {
+                SetEncodingStatusMessage(ex.Message, Brushes.Red);
+            }
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
@@ -71,15 +87,26 @@ namespace HybridCryptography
 
             if ((bool)dialog.ShowDialog())
             {
-                string name = dialog.SafeFileName;
-                pathTextBox.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), name);
-                img.Save(pathTextBox.Text);
+                string name = dialog.FileName;
+                img.Save(name);
             }
         }
 
         private void decodeButton_Click(object sender, RoutedEventArgs e)
         {
-            outputTextBox.Text = new PictureSteganographyHelper().extractText(img);
+            try
+            {
+                fileToDecodePath = pathTextBox.Text;
+                imageUri = new Uri(fileToDecodePath);
+                img = new Bitmap(imageUri.AbsolutePath);
+                fileToDecodeContents = new PictureSteganographyHelper().extractText(img);
+                decodedMessageTextBox.Text = fileToDecodeContents;
+                SetDecodingStatusMessage("Success", Brushes.Green);
+            }
+            catch (UriFormatException ex)
+            {
+                SetDecodingStatusMessage("Failed: No image selected", Brushes.Red);
+            }
         }
 
         private void selectFileButton_Click(object sender, RoutedEventArgs e)
@@ -89,9 +116,10 @@ namespace HybridCryptography
 
             if ((bool)dialog.ShowDialog())
             {
-                filePath = dialog.FileName;
-                filePathTextBox.Text = filePath;
-                fileContents = File.ReadAllBytes(filePath);
+                encryptionFilePath = dialog.FileName;
+                filePathTextBox.Text = encryptionFilePath;
+                encryptionFileContents = File.ReadAllBytes(encryptionFilePath);
+                MessageBox.Show(File.ReadAllText(encryptionFilePath, Encoding.Unicode));
             }
         }
 
@@ -102,21 +130,21 @@ namespace HybridCryptography
                 try
                 {
                     encryptedFileContents =
-                        hybrid.Encrypt(fileContents, hybrid.ConvertStringToKey(receiverPublicKeyTextBox.Text));
-                    SetEncryptionStatusMessage("Succes", Brushes.Green);
+                        hybrid.Encrypt(encryptionFileContents, hybrid.ConvertStringToKey(receiverPublicKeyTextBox.Text));
+                    SetEncryptionStatusMessage("Success", Brushes.Green);
                 }
                 catch (InvalidOperationException ex)
                 {
-                    SetEncryptionStatusMessage("Failed: Ongeldige publieke sleutel", Brushes.Red);
+                    SetEncryptionStatusMessage("Failed: Invalid public key", Brushes.Red);
                 }
                 catch (NullReferenceException ex)
                 {
-                    SetEncryptionStatusMessage("Failed: Ongeldig bestand", Brushes.Red);
+                    SetEncryptionStatusMessage("Failed: Invalid file", Brushes.Red);
                 }        
             }
             else
             {
-                SetEncryptionStatusMessage("Failed: Geen publieke sleutel gevonden", Brushes.Red);
+                SetEncryptionStatusMessage("Failed: No valid public key found", Brushes.Red);
             }
         }
 
@@ -152,9 +180,9 @@ namespace HybridCryptography
 
             if ((bool)dialog.ShowDialog())
             {
-                filePath = dialog.FileName;
-                fileToDecryptTextBox.Text = filePath;
-                Dictionary<string, byte[]> test = EncryptedDataHelper.ToDictionary(File.ReadAllText(filePath));
+                encryptionFilePath = dialog.FileName;
+                fileToDecryptTextBox.Text = encryptionFilePath;
+                Dictionary<string, byte[]> test = EncryptedDataHelper.ToDictionary(File.ReadAllText(encryptionFilePath));
                 encryptedFileContents = test;
             }
         }
@@ -179,28 +207,28 @@ namespace HybridCryptography
             {
                 try
                 {
-                    fileContents =
+                    encryptionFileContents =
                         hybrid.Decrypt(encryptedFileContents,
                             hybrid.ConvertStringToKey(senderPublicKeyToDecryptTextBox.Text))["text"];
-                    SetDecryptionStatusMessage("Succes", Brushes.Green);
-                    resultTextBox.Text = Encoding.UTF8.GetString(fileContents);
+                    SetDecryptionStatusMessage("Success", Brushes.Green);
+                    resultTextBox.Text = Encoding.UTF8.GetString(encryptionFileContents);
                 }
                 catch (InvalidOperationException ex)
                 {
-                    SetDecryptionStatusMessage("Failed: Ongeldige publieke sleutel", Brushes.Red);
+                    SetDecryptionStatusMessage("Failed: Invalid public key", Brushes.Red);
                 }
                 catch (NullReferenceException ex)
                 {
-                    SetDecryptionStatusMessage("Failed: Ongeldig bestand", Brushes.Red);
+                    SetDecryptionStatusMessage("Failed: Invalid file", Brushes.Red);
                 }
                 catch (ArgumentNullException ex)
                 {
-                    SetDecryptionStatusMessage("Failed: Kan bestand niet decrypteren", Brushes.Red);
+                    SetDecryptionStatusMessage("Failed: Unable to decrypt the file", Brushes.Red);
                 }
             }
             else
             {
-                SetDecryptionStatusMessage("Failed: Geen publieke sleutel gevonden", Brushes.Red);
+                SetDecryptionStatusMessage("Failed: No valid public key found", Brushes.Red);
             }
         }
 
@@ -230,6 +258,59 @@ namespace HybridCryptography
         {
             decryptStatusMessageLabel.Content = message;
             decryptStatusMessageLabel.Foreground = color;
+        }
+
+        private void SetEncodingStatusMessage(String message, SolidColorBrush color)
+        {
+            encodingStatusMessageLabel.Content = message;
+            encodingStatusMessageLabel.Foreground = color;
+        }
+
+        private void SetDecodingStatusMessage(String message, SolidColorBrush color)
+        {
+            decodingStatusMessageLabel.Content = message;
+            decodingStatusMessageLabel.Foreground = color;
+        }
+
+        private void saveDecryptedFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if ((bool)dialog.ShowDialog())
+            {
+                File.WriteAllText(dialog.FileName, Encoding.UTF8.GetString(encryptionFileContents));
+            }
+        }
+
+        private void NewWindowMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow window2 = new MainWindow();
+            window2.Show();
+        }
+
+        private void selectFileToEncodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if ((bool)dialog.ShowDialog())
+            {
+                fileToEncodePath = dialog.FileName;
+                filePathToEncodeTextBox.Text = fileToEncodePath;
+            }
+        }
+
+        private void saveDecodedFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if ((bool)dialog.ShowDialog())
+            {
+                File.WriteAllText(dialog.FileName, fileToDecodeContents);
+            }
         }
     }
 }
