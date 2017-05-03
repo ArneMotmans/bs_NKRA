@@ -10,64 +10,77 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Name="CopyPublicKeyMenuItem" Header="Exporteer publieke sleutel" Click="CopyPublicKeyMenuItem_OnClick"/>
+                    <MenuItem Name="newWindowMenuItem" Header="New" Click="NewWindowMenuItem_OnClick"/>
                     <Separator/>
                     <MenuItem Name="closeMenuItem" Header="_Close" Click="CloseMenuItem_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Keys">
+                    <MenuItem Name="CopyPublicKeyMenuItem" Header="Export public key to.." Click="CopyPublicKeyMenuItem_OnClick"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
         <TabControl Margin="0,29,0,0">
-            <TabItem Header="Encryptie">
+            <TabItem Header="Encryption">
                 <Grid>
                     <Label x:Name="fileToEncryptLabel" Content="Bestand" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="filePathTextBox" HorizontalAlignment="Left" Height="23" Margin="57,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173"/>
-                    <Button x:Name="selectFileButton" Content="Zoeken.." HorizontalAlignment="Left" Margin="235,14,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="selectFileButton_Click"/>
-                    <Button x:Name="encryptButton" Content="Encrypteer" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="140" Click="encryptButton_Click"/>
-                    <Button x:Name="saveFileButton" Content="Opslaan" HorizontalAlignment="Left" Margin="160,264,0,0" VerticalAlignment="Top" Width="140" Click="saveFileButton_Click"/>
+                    <Button x:Name="selectFileButton" Content="Browse.." HorizontalAlignment="Left" Margin="235,14,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="selectFileButton_Click"/>
+                    <Button x:Name="encryptButton" Content="Encrypt" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="140" Click="encryptButton_Click"/>
+                    <Button x:Name="saveFileButton" Content="Save" HorizontalAlignment="Left" Margin="160,264,0,0" VerticalAlignment="Top" Width="140" Click="saveFileButton_Click"/>
                     <Label x:Name="encryptStatusLabel" Content="Status:" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Height="37"/>
-                    <Label x:Name="receiverPublicKeyLabel" Content="Publieke sleutel van de ontvanger" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="receiverPublicKeyLabel" Content="Public key of receiving party" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="receiverPublicKeyTextBox" HorizontalAlignment="Left" Height="131" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-                    <Button x:Name="selectKeyButton" Content="Zoeken.." HorizontalAlignment="Left" Margin="235,61,0,0" VerticalAlignment="Top" Width="75" Click="selectKeyButton_Click"/>
+                    <Button x:Name="selectKeyButton" Content="Browse.." HorizontalAlignment="Left" Margin="235,61,0,0" VerticalAlignment="Top" Width="75" Click="selectKeyButton_Click"/>
                     <Label x:Name="encryptStatusMessageLabel" HorizontalAlignment="Left" Margin="63,222,0,0" VerticalAlignment="Top" Height="37" Width="247"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Decryptie">
+            <TabItem Header="Decryption">
                 <Grid>
                     <Label x:Name="fileToDecryptLabel" Content="Bestand" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="fileToDecryptTextBox" HorizontalAlignment="Left" Height="23" Margin="57,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173"/>
-                    <Button x:Name="selectFileToDecryptButton" Content="Zoeken.." HorizontalAlignment="Left" Margin="235,14,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="selectFileToDecryptButton_Click"/>
-                    <Button x:Name="decryptButton" Content="Decrypteer" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="140" Click="decryptButton_Click"/>
-                    <Button x:Name="saveDecryptedFileButton" Content="Opslaan" HorizontalAlignment="Left" Margin="160,264,0,0" VerticalAlignment="Top" Width="140" Click="saveFileButton_Click"/>
+                    <Button x:Name="selectFileToDecryptButton" Content="Browse.." HorizontalAlignment="Left" Margin="235,14,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="selectFileToDecryptButton_Click"/>
+                    <Button x:Name="decryptButton" Content="Decrypt" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="140" Click="decryptButton_Click"/>
+                    <Button x:Name="saveDecryptedFileButton" Content="Save" HorizontalAlignment="Left" Margin="160,264,0,0" VerticalAlignment="Top" Width="140" Click="saveDecryptedFileButton_Click"/>
                     <Label x:Name="decryptStatusLabel" Content="Status:" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Height="37"/>
-                    <Label x:Name="senderPublicKeyToDecryptLabel" Content="Publieke sleutel van de zender" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="senderPublicKeyToDecryptLabel" Content="Public key of sending party" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="senderPublicKeyToDecryptTextBox" HorizontalAlignment="Left" Height="131" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-                    <Button x:Name="selectPublicKeyToDecryptButton" Content="Zoeken.." HorizontalAlignment="Left" Margin="235,61,0,0" VerticalAlignment="Top" Width="75" Click="selectPublicKeyToDecryptButton_Click"/>
-                    <Label x:Name="resultLabel" Content="Resultaat" HorizontalAlignment="Left" Margin="329,10,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="selectPublicKeyToDecryptButton" Content="Browse.." HorizontalAlignment="Left" Margin="235,61,0,0" VerticalAlignment="Top" Width="75" Click="selectPublicKeyToDecryptButton_Click"/>
+                    <Label x:Name="resultLabel" Content="Result" HorizontalAlignment="Left" Margin="329,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Height="243" Margin="329,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337"/>
                     <Label x:Name="decryptStatusMessageLabel" HorizontalAlignment="Left" Margin="63,222,0,0" VerticalAlignment="Top" Height="37" Width="247"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Steganografie">
+            <TabItem Header="Steganography">
                 <Grid>
-                    <Border Background="#FFE8E8E8" Margin="10,10,401,59">
+                    <Border Background="#FFE8E8E8" Margin="10,10,405,61" Height="261" Width="261">
                         <Image x:Name="image" HorizontalAlignment="Left" Height="261" VerticalAlignment="Top" Width="261"/>
                     </Border>
 
                     <Button x:Name="selectImageButton" Content="Select Image" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Width="100" Click="selectImageButton_Click" Height="24"/>
-                    <GroupBox x:Name="encodeGroupBox" Header="Encode" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" Height="177" Width="386">
+                    <GroupBox x:Name="encodeGroupBox" Header="Encode" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" Height="124" Width="386">
                         <Grid>
-                            <Label x:Name="textLabel" Content="Text:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="60"/>
-                            <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Height="110" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
-                            <Button x:Name="encodeButton" Content="Encode" HorizontalAlignment="Left" Margin="289,125,0,0" VerticalAlignment="Top" Width="75" Click="encodeButton_Click"/>
-                            <Button x:Name="saveImageButton" Content="Save" HorizontalAlignment="Left" Margin="209,125,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="156*"/>
+                                <ColumnDefinition Width="31*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="fileToEncodeLabel" Content="File:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="60"/>
+                            <Button x:Name="encodeButton" Content="Encode" HorizontalAlignment="Left" Margin="209,78,0,0" VerticalAlignment="Top" Width="75" Click="encodeButton_Click"/>
+                            <Button x:Name="saveImageButton" Content="Save" HorizontalAlignment="Left" Margin="289,78,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click" Grid.ColumnSpan="2" RenderTransformOrigin="0.515,-0.285" />
+                            <TextBox x:Name="filePathToEncodeTextBox" HorizontalAlignment="Left" Height="26" Margin="60,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" Grid.ColumnSpan="2"/>
+                            <Button x:Name="selectFileToEncodeButton" Grid.ColumnSpan="2" Content="Select" HorizontalAlignment="Left" Margin="289,41,0,0" VerticalAlignment="Top" Width="75" Click="selectFileToEncodeButton_Click"/>
+                            <Label x:Name="encodingStatusLabel" Content="Status: " HorizontalAlignment="Left" Margin="0,72,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="encodingStatusMessageLabel" Content="" HorizontalAlignment="Left" Margin="48,72,0,0" VerticalAlignment="Top" Width="156"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="decodeGroupBox" Header="Decode" HorizontalAlignment="Left" Margin="276,192,0,0" VerticalAlignment="Top" Height="108" Width="386">
+                    <GroupBox x:Name="decodeGroupBox" Header="Decode" HorizontalAlignment="Left" Margin="276,139,0,0" VerticalAlignment="Top" Height="161" Width="386">
                         <Grid>
-                            <Label x:Name="textLabel1" Content="Text:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="60"/>
-                            <TextBox x:Name="outputTextBox" HorizontalAlignment="Left" Height="41" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
-                            <Button x:Name="decodeButton" Content="Decode" HorizontalAlignment="Left" Margin="289,56,0,0" VerticalAlignment="Top" Width="75" Click="decodeButton_Click"/>
+                            <Button x:Name="decodeButton" Content="Decode" HorizontalAlignment="Left" Margin="209,109,0,0" VerticalAlignment="Top" Width="75" Click="decodeButton_Click"/>
+                            <Button x:Name="saveDecodedFileButton" Content="Save" HorizontalAlignment="Left" Margin="289,109,0,0" VerticalAlignment="Top" Width="75" Click="saveDecodedFileButton_Click"/>
+                            <TextBox x:Name="decodedMessageTextBox" HorizontalAlignment="Left" Height="88" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
+                            <Label x:Name="decodingStatusLabel" Content="Status:" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="decodingStatusMessageLabel" Content="" HorizontalAlignment="Left" Margin="45,103,0,0" VerticalAlignment="Top" Width="159"/>
+
                         </Grid>
                     </GroupBox>
                     <TextBox x:Name="pathTextBox" HorizontalAlignment="Left" Height="23" Margin="115,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>

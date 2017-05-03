@@ -50,7 +50,7 @@ namespace HybridCryptography
                 }
                 catch (NullReferenceException)
                 {
-                    MessageBox.Show("No image selected");
+                    throw new NullReferenceException("Failed: No image selected");
                 }
 
                 return null;
