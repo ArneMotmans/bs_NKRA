@@ -119,7 +119,6 @@ namespace HybridCryptography
                 encryptionFilePath = dialog.FileName;
                 filePathTextBox.Text = encryptionFilePath;
                 encryptionFileContents = File.ReadAllBytes(encryptionFilePath);
-                MessageBox.Show(File.ReadAllText(encryptionFilePath, Encoding.Unicode));
             }
         }
 
