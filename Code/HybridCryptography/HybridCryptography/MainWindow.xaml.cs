@@ -118,7 +118,10 @@ namespace HybridCryptography
             {
                 encryptionFilePath = dialog.FileName;
                 filePathTextBox.Text = encryptionFilePath;
-                encryptionFileContents = File.ReadAllBytes(encryptionFilePath);
+                FileStream stream = File.OpenRead(encryptionFilePath);
+                encryptionFileContents = new byte[stream.Length];
+                stream.Read(encryptionFileContents, 0, encryptionFileContents.Length);
+                stream.Close();
             }
         }
 
@@ -181,6 +184,8 @@ namespace HybridCryptography
             {
                 encryptionFilePath = dialog.FileName;
                 fileToDecryptTextBox.Text = encryptionFilePath;
+                FileStream stream = File.OpenRead(encryptionFilePath);
+                encryptionFileContents = new byte[stream.Length];
                 Dictionary<string, byte[]> test = EncryptedDataHelper.ToDictionary(File.ReadAllText(encryptionFilePath));
                 encryptedFileContents = test;
             }
@@ -210,7 +215,7 @@ namespace HybridCryptography
                         hybrid.Decrypt(encryptedFileContents,
                             hybrid.ConvertStringToKey(senderPublicKeyToDecryptTextBox.Text))["text"];
                     SetDecryptionStatusMessage("Success", Brushes.Green);
-                    resultTextBox.Text = Encoding.UTF8.GetString(encryptionFileContents);
+                    resultTextBox.Text = Encoding.Default.GetString(encryptionFileContents);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -278,7 +283,7 @@ namespace HybridCryptography
             //dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if ((bool)dialog.ShowDialog())
             {
-                File.WriteAllText(dialog.FileName, Encoding.UTF8.GetString(encryptionFileContents));
+                File.WriteAllText(dialog.FileName, Encoding.Default.GetString(encryptionFileContents));
             }
         }
 
