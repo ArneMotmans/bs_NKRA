@@ -186,8 +186,17 @@ namespace HybridCryptography
                 fileToDecryptTextBox.Text = encryptionFilePath;
                 FileStream stream = File.OpenRead(encryptionFilePath);
                 encryptionFileContents = new byte[stream.Length];
-                Dictionary<string, byte[]> test = EncryptedDataHelper.ToDictionary(File.ReadAllText(encryptionFilePath));
-                encryptedFileContents = test;
+                try
+                {
+                    Dictionary<string, byte[]> test =
+                        EncryptedDataHelper.ToDictionary(File.ReadAllText(encryptionFilePath));
+                    encryptedFileContents = test;
+                }
+                catch (FormatException)
+                {
+                    SetDecryptionStatusMessage("Failed: Invalid file", Brushes.Red);
+                }
+                
             }
         }
 
